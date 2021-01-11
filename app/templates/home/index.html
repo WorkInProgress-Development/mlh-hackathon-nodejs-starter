@@ -41,15 +41,16 @@
 // }
 function getCatFact(){
   var responseFact = ""
-  fetch(`http://api.allorigins.win/get?url=${encodeURIComponent('https://dog-api.kinduff.com/api/facts')}`)
+  fetch(`http://api.allorigins.win/get?url=${encodeURIComponent('https://dog-api.kinduff.com/api/facts?number=10')}`)
   .then(response => {
       if (response.ok) return response.json()
       throw new Error('Network response was not ok.')
     })
   .then( data => {
-      console.log(data.contents);
       const factObj = JSON.parse(data.contents);
-      document.getElementById("my-cat-fact").innerHTML = factObj.facts[0];
+      console.log(factObj)
+
+      document.getElementById("my-cat-fact").innerHTML = factObj.facts[Math.floor(Math.random() * 11)];
     })
     
   }
