@@ -1,10 +1,10 @@
 <style>
-  .cat-picture {
+  .dog-picture {
     width: 100%;
     height: auto;
   }
 
-  #my-cat-fact {
+  #my-dog-fact {
     color: limegreen;
     text-align: center;
     margin-top: 1em;
@@ -12,34 +12,7 @@
   }
 </style>
 <script>
-//   function getCatFact() {
-//   //fetch('https://cat-fact.herokuapp.com/facts')
-//   fetch('https://cors-anywhere.herokuapp.com/https://dog-api.kinduff.com/api/facts')
-//   .then(
-//     function(response) {
-//       if (response.status !== 200) {
-//         console.log('Looks like there was a problem. Status Code: ' +
-//           response.status);
-//         return;
-//       }
-//       // const obj = JSON.parse(response);
-//       const value = response.facts
-//       console.log(response)
-//       document.getElementById("my-cat-fact").innerHTML = value;
-
-//       // Examine the text in the response
-//       // response.json().then(function(data) {
-//       //   console.log(data);
-//       //   const random = data[Math.floor(Math.random() * data.length)];
-//       //   document.getElementById("my-cat-fact").innerHTML = random['text'];
-//       // });
-//     }
-//   )
-//   .catch(function(err) {
-//     console.log('Fetch Error :-S', err);
-//   });
-// }
-function getCatFact(){
+function getDogFact(){
   var responseFact = ""
   fetch(`http://api.allorigins.win/get?url=${encodeURIComponent('https://dog-api.kinduff.com/api/facts?number=10')}`)
   .then(response => {
@@ -50,7 +23,7 @@ function getCatFact(){
       const factObj = JSON.parse(data.contents);
       console.log(factObj)
 
-      document.getElementById("my-cat-fact").innerHTML = factObj.facts[Math.floor(Math.random() * 11)];
+      document.getElementById("my-dog-fact").innerHTML = factObj.facts[Math.floor(Math.random() * 11)];
     })
     
   }
@@ -78,17 +51,6 @@ function getDogImage() {
     console.log('Fetch Error :-S', err);
   });
 }
-
-// WIP
-// function getDogImage(){
-//   $.getJSON("https://ancient-dusk-93363.herokuapp.com/https://dog.ceo/api/breeds/image/random", function (image) {
-//       response.json
-//       var body = XMLHttpRequest.response;
-//       console.log(dog_img)
-//       $(".dog_img").attr("src", dog_img);
-//       document.getElementById("my-dog-image").innerHTML = `<img src="${dog_img}">`;
-//   }); 
-//}
 </script>
 <div class="bg-gray-light border-bottom border-gray-light">
   <div class="container text-center py-5 mb-4">
@@ -103,8 +65,4 @@ function getDogImage() {
     <div id="my-cat-fact"></div>
     <div id="my-dog-image"></div>
   </div>
-</div>
-
-<div class="text-gray-light text-center py-5 my-5">
-  <!-- <img src="https://c.files.bbci.co.uk/12A9B/production/_111434467_gettyimages-1143489763.jpg" class="cat-picture" /> -->
 </div>
