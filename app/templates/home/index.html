@@ -48,8 +48,8 @@ function getCatFact(){
     })
   .then( data => {
       console.log(data.contents);
-      var fact = data;
-      console.log(data.contents.facts)
+      const factObj = JSON.parse(data.contents);
+      document.getElementById("my-cat-fact").innerHTML = factObj.facts[0];
     })
     
   }
