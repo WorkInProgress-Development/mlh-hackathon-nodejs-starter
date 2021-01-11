@@ -21,8 +21,9 @@
       <p>* terms and conditions apply. see github for more details.</p>
     </div>
     <a class="btn btn-primary mt-2" href="#" onClick="getCatFact()"> Get a Fact about Cats because I like Cats </a>
-
+    <a class="btn btn-primary mt-2" href="#" onClick="getDogImage()"> Get a Image about Cats because I like Cats </a>
     <div id="my-cat-fact"></div>
+    <div id="my-dog-image"></div>
   </div>
 </div>
 
@@ -30,8 +31,8 @@
 <script>
 
 function getCatFact() {
-  //fetch('https://cat-fact.herokuapp.com/facts')
-  fetch('https://dog-api.kinduff.com/api/facts')
+  fetch('https://cat-fact.herokuapp.com/facts')
+  //fetch('https://dog-api.kinduff.com/api/facts')
   .then(
     function(response) {
       if (response.status !== 200) {
@@ -44,8 +45,32 @@ function getCatFact() {
       response.json().then(function(data) {
         console.log(data);
         const random = data[Math.floor(Math.random() * data.length)];
-
         document.getElementById("my-cat-fact").innerHTML = random['text'];
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
+}
+
+function getDogImage() {
+  //fetch('https://cat-fact.herokuapp.com/facts')
+  fetch('https://dog.ceo/api/breeds/image/random')
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then(function(data) {
+        console.log(data);
+        var imageURL = data.message;
+        document.getElementById("my-dog-image").innerHTML += `<img src="${imageURL}">`;
+        // document.getElementById("my-dog-image").innerHTML = str1.concat("<img src=",data,">")
       });
     }
   )
@@ -56,5 +81,5 @@ function getCatFact() {
 </script>
 
 <div class="text-gray-light text-center py-5 my-5">
-  <img src="https://c.files.bbci.co.uk/12A9B/production/_111434467_gettyimages-1143489763.jpg" class="cat-picture" />
+  <!-- <img src="https://c.files.bbci.co.uk/12A9B/production/_111434467_gettyimages-1143489763.jpg" class="cat-picture" /> -->
 </div>
